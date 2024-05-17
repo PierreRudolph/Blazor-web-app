@@ -8,13 +8,51 @@
 <h2>variable text: @exampleNote</h2>
 <button class="btn btn-primary change-note-btn" @onclick="changeText">Ändere den Text oben!</button>
 
+<button class="btn btn-primary change-note-btn" @onclick="@(()=>{
+    if (exampleNote == "Beispiel Notiz")
+        {
+            exampleNote = "Neue Beispiel Notiz!";
+        }
+        else
+        {
+            exampleNote = "Beispiel Notiz";
+        }
+        })">Ändere den Text oben!</button>
 
 
+@if (exampleNote == "Beispiel Notiz")
+{
+    <p>Standard Notiz wird angezeigt</p>
+}
+else
+{
+    <p>Standard Notiz wird nicht angezeigt</p>
+}
+
+@for (int i = 0; i < 10; i++)
+{
+    <p>value of i: @i</p>
+}
+
+@foreach (var name in notes)
+{
+    <p>@((MarkupString)name)</p>
+}
 
 @code {
-    private Array notes = new string[2] {
-"ajsei","jsief"
-};
+    private List<string> notes;
+
+    protected override void OnInitialized()
+    {
+        notes = new List<string>{
+"<b>erste notiz</b>",
+"<i>zweite notiz</i>",
+"dritte notiz",
+"vierte notiz",
+"fünfte notiz",
+"sechste notiz",
+"siebte notiz"};
+    }
     private string exampleNote = "Beispiel Notiz";
     private void changeText()
     {
