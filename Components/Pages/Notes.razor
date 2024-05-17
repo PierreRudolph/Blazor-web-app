@@ -1,0 +1,26 @@
+@page "/notes"
+@rendermode InteractiveServer //braucht es für eine interaktive seite
+
+<PageTitle>Notes</PageTitle>
+
+<h1>Notizen</h1>
+
+<h2>variable text: @exampleNote</h2>
+<button class="btn btn-primary change-note-btn" @onclick="changeText">Ändere den Text oben!</button>
+
+
+ 
+
+@code{
+private string exampleNote = "Beispiel Notiz";
+private void changeText(){
+
+    if(exampleNote == "Beispiel Notiz"){
+    exampleNote="Neue Beispiel Notiz!";
+    }else{
+        exampleNote="Beispiel Notiz";
+    }
+}
+
+   
+}
