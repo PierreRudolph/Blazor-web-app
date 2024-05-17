@@ -2,6 +2,13 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hello, @GetWord()!</h1>
 
 Welcome to your new app.
+
+@code {
+    private string GetWord()
+    {
+        return "world";
+    }
+}

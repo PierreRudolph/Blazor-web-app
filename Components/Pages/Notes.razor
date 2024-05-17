@@ -9,18 +9,28 @@
 <button class="btn btn-primary change-note-btn" @onclick="changeText">Ändere den Text oben!</button>
 
 
- 
 
-@code{
-private string exampleNote = "Beispiel Notiz";
-private void changeText(){
 
-    if(exampleNote == "Beispiel Notiz"){
-    exampleNote="Neue Beispiel Notiz!";
-    }else{
-        exampleNote="Beispiel Notiz";
+@code {
+    private Array notes = new string[2] {
+"ajsei","jsief"
+};
+    private string exampleNote = "Beispiel Notiz";
+    private void changeText()
+    {
+
+        if (exampleNote == "Beispiel Notiz")
+        {
+            exampleNote = "Neue Beispiel Notiz!";
+        }
+        else
+        {
+            exampleNote = "Beispiel Notiz";
+        }
+
     }
-}
 
-   
+
+
+
 }
