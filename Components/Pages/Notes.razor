@@ -29,18 +29,24 @@ else
     <p>Standard Notiz wird nicht angezeigt</p>
 }
 
+<input @bind="@newNoteInput">
+<button @onclick="addNewNote">Neue Notiz hinzufügen</button>
+<button @onclick="deleteAllNotes">Alle Notizen löschen</button>
+
 @for (int i = 0; i < 10; i++)
 {
     <p>value of i: @i</p>
 }
 
-@foreach (var name in notes)
+
+@foreach (var note in notes)
 {
-    <p>@((MarkupString)name)</p>
+    <p @onclick="()=>deleteNote(note)" style="cursor: pointer;">@((MarkupString)note)</p>
 }
 
 @code {
-    private List<string> notes;
+    private string newNoteInput = "";
+    private List<string> notes = [];
 
     protected override void OnInitialized()
     {
@@ -68,7 +74,20 @@ else
 
     }
 
+    private void addNewNote()
+    {
+        notes.Add(newNoteInput);
+        newNoteInput = "";
+    }
+
+    private void deleteAllNotes()
+    {
+        notes = [];
+    }
 
 
-
+    private void deleteNote(string note)
+    {
+        notes.Remove(note);
+    }
 }
