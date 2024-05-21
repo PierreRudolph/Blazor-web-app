@@ -1,0 +1,48 @@
+@page "/contacts"
+@* @using Blazor_App.Models eine möglichkeit
+das model zu importieren. Besser aber wenn bei _imports.razor
+denn dann überall verfügbar. *@
+
+@rendermode InteractiveServer
+
+<h1 class="headline-contacts">Kontakte</h1>
+
+@foreach (var contact in contacts)
+{
+    <div class="contact-div">
+        <b>Name:</b> <span>@contact.FirstName</span><br>
+        <b>Nachname:</b> <span>@contact.LastName</span><br>
+        <b>Email:</b> <span>@contact.Email</span>
+    </div>
+}
+
+@code {
+    private List<Contact> contacts = [];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        contacts = new List<Contact>
+{
+new Contact
+{
+FirstName="Peter",
+LastName="Wohlleben",
+Email="wohlleben@mail.de"
+},
+new Contact
+{
+FirstName="Julia",
+LastName="Stockerson",
+Email="stockerson@mail.de"
+},
+new Contact
+{
+FirstName="Markus",
+LastName="Kafka",
+Email="kafka@mail.de"
+},
+};
+    }
+}
