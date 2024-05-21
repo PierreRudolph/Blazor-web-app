@@ -9,11 +9,9 @@ denn dann überall verfügbar. *@
 
 @foreach (var contact in contacts)
 {
-    <div class="contact-div">
-        <b>Name:</b> <span>@contact.FirstName</span><br>
-        <b>Nachname:</b> <span>@contact.LastName</span><br>
-        <b>Email:</b> <span>@contact.Email</span>
-    </div>
+    <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
+        LastName="@contact.LastName" Email="@contact.Email">
+    </Blazor_App.Components.Pages.ContactComponents.ContactComponent>
 }
 
 @code {

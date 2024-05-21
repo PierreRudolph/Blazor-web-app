@@ -1,0 +1,14 @@
+<div class="contact-div">
+    <b>Name:</b> <span>@FirstName</span><br>
+    <b>Nachname:</b> <span>@LastName</span><br>
+    <b>Email:</b> <span>@Email</span>
+</div>
+
+@code {
+    [Parameter]
+    public string FirstName { get; set; } = "";
+    [Parameter]
+    public string LastName { get; set; } = "";
+    [Parameter]
+    public string Email { get; set; } = "";
+}
