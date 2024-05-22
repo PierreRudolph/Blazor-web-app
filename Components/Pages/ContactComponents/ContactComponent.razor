@@ -1,14 +1,15 @@
 <div class="contact-div">
-    <b>Name:</b> <span>@FirstName</span><br>
-    <b>Nachname:</b> <span>@LastName</span><br>
-    <b>Email:</b> <span>@Email</span>
+    <b>Name:</b> <span>@CurrentContact.FirstName</span><br>
+    <b>Nachname:</b> <span>@CurrentContact.LastName</span><br>
+    <b>Email:</b> <span>@CurrentContact.Email</span>
 </div>
 
 @code {
-    [Parameter]
-    public string FirstName { get; set; } = "";
-    [Parameter]
-    public string LastName { get; set; } = "";
-    [Parameter]
-    public string Email { get; set; } = "";
+    [Parameter] public Contact CurrentContact { get; set; }
+
+    @* public string FirstName { get; set; } = "";
+[Parameter]
+public string LastName { get; set; } = "";
+[Parameter]
+public string Email { get; set; } = ""; alternative zu obigem code *@
 }

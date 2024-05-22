@@ -9,9 +9,13 @@ denn dann überall verfügbar. *@
 
 @foreach (var contact in contacts)
 {
-    <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
-        LastName="@contact.LastName" Email="@contact.Email">
+
+    <Blazor_App.Components.Pages.ContactComponents.ContactComponent CurrentContact="contact">
     </Blazor_App.Components.Pages.ContactComponents.ContactComponent>
+
+    @* <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
+LastName="@contact.LastName" Email="@contact.Email">
+</Blazor_App.Components.Pages.ContactComponents.ContactComponent> alternative zu obigem code *@
 }
 
 @code {

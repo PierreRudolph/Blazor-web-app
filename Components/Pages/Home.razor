@@ -1,13 +1,23 @@
 ﻿@page "/"
 
+@using Blazor_App.Components.Pages.ContactComponents
+
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, @GetWord() 2+2=@(2 + 2)!</h1>
 
 Welcome to your new app.
 
-<Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="Pierre" LastName="Lettner"
-    Email="lettner89@gmail.com"></Blazor_App.Components.Pages.ContactComponents.ContactComponent>
+<ContactComponent CurrentContact="contact">
+</ContactComponent>
+
+
+
+<MyTextbox Placeholder="=" type="text">
+</MyTextbox>
+
 @code {
     private string GetWord() { return "world"; }
+
+    public Contact contact = new Contact { FirstName = "Pierre", LastName = "Lettner", Email = "kasdlkfj" };
 }

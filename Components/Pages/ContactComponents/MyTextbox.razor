@@ -1,0 +1,9 @@
+<input @attributes="@CustomAttributes" />
+
+@code {
+    @* [Parameter]
+public string Placeholder { get; set; } = "Placeholder12"; *@
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> CustomAttributes { get; set; }
+}
