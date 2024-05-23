@@ -8,15 +8,24 @@
 
 Welcome to your new app.
 
+
+
 <ContactComponent CurrentContact="contact">
 </ContactComponent>
 
+<br>
 
-
-<MyTextbox Placeholder="=" type="text">
+<MyTextbox @attributes="inputAttributes">
 </MyTextbox>
 
 @code {
+
+    private Dictionary<string, object> inputAttributes = new Dictionary<string, object>
+{
+
+{"placeholder","Kontakt Name"},
+{"type","text"}
+};
     private string GetWord() { return "world"; }
 
     public Contact contact = new Contact { FirstName = "Pierre", LastName = "Lettner", Email = "kasdlkfj" };

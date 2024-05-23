@@ -1,11 +1,31 @@
 <div class="contact-div">
     <b>Name:</b> <span>@CurrentContact.FirstName</span><br>
+
     <b>Nachname:</b> <span>@CurrentContact.LastName</span><br>
-    <b>Email:</b> <span>@CurrentContact.Email</span>
+    @if (DisplayEmail)
+    {
+        <b>Email:</b> <span>@CurrentContact.Email</span>
+    }
+
+    <br>
+    @if (displayInfo)
+    {
+
+        <span>Die Email Addresse von
+            @CurrentContact.FirstName
+            @CurrentContact.LastName
+            ist @CurrentContact.Email</span>
+    }
+    <br />
+    <button @onclick="@(()=>{displayInfo = !displayInfo;})">Show info</button>
 </div>
 
 @code {
-    [Parameter] public Contact CurrentContact { get; set; }
+    [Parameter] public Contact CurrentContact { get; set; } = new Contact();
+
+    [Parameter]
+    public bool DisplayEmail { get; set; }
+    private bool displayInfo = false;
 
     @* public string FirstName { get; set; } = "";
 [Parameter]
