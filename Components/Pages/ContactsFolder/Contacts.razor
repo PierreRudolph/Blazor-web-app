@@ -1,0 +1,24 @@
+@page "/contacts"
+@* @using Blazor_App.Models eine möglichkeit
+das model zu importieren. Besser aber wenn bei _imports.razor
+denn dann überall verfügbar. *@
+
+@using Blazor_App.Components.Pages.ContactComponents
+
+@rendermode InteractiveServer
+
+<h1 class="headline-contacts">Kontakte</h1>
+<h2>test</h2>
+
+<ContactList Contacts="@contacts">
+    <NullContacts>
+        <br>
+        <span>Kontakte werden geladen...(from Contacts Razor)</span>
+    </NullContacts>
+
+
+    <EmptyContacts>
+        <br>
+        <span>keine Kontakte zum Anzeigen...(from Contacts Razor</span>
+    </EmptyContacts>
+</ContactList>

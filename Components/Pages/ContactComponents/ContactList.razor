@@ -1,17 +1,32 @@
 <input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
 
-@foreach (var contact in Contacts)
+@if (Contacts is null)
 {
+    @NullContacts
+}
+else if (Contacts.Count == 0)
+{
+    @EmptyContacts
 
-    <ContactComponent DeleteCurrentContact="DeleteContact" DisplayEmail="DisplayEmail" CurrentContact="contact">
-    </ContactComponent>
-
-    @* <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
-LastName="@contact.LastName" Email="@contact.Email">
-</Blazor_App.Components.Pages.ContactComponents.ContactComponent> alternative zu obigem code *@
+}
+else
+{
+    @foreach (var contact in Contacts)
+    {
+        <ContactComponent DeleteCurrentContact="DeleteContact" DisplayEmail="DisplayEmail" CurrentContact="contact">
+        </ContactComponent>
+    }
 }
 
+
+
 @code {
+    [Parameter]
+    public RenderFragment NullContacts { get; set; }
+
+    [Parameter]
+    public RenderFragment EmptyContacts { get; set; }
+
     [Parameter]
     public List<Contact> Contacts { get; set; }
 
