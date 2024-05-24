@@ -1,3 +1,22 @@
 .change-note-btn{
     margin-top:10px;
 }
+
+.note-container{
+    cursor: pointer;
+    padding: 10px 0px;
+    padding-right: 60px;
+    position: relative;
+    width: fit-content;
+}
+
+
+.note-popup{
+    display: none;
+    position: absolute;
+    top: -5px;
+    right: -50px;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 1px 4px;
+}

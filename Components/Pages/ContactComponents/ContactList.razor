@@ -1,0 +1,27 @@
+<input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
+
+@foreach (var contact in Contacts)
+{
+
+    <ContactComponent DeleteCurrentContact="DeleteContact" DisplayEmail="DisplayEmail" CurrentContact="contact">
+    </ContactComponent>
+
+    @* <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
+LastName="@contact.LastName" Email="@contact.Email">
+</Blazor_App.Components.Pages.ContactComponents.ContactComponent> alternative zu obigem code *@
+}
+
+@code {
+    [Parameter]
+    public List<Contact> Contacts { get; set; }
+
+
+    public bool DisplayEmail = false;
+
+
+    private void DeleteContact(Contact contact)
+    {
+        Contacts.Remove(contact);
+    }
+
+}

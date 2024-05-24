@@ -38,16 +38,40 @@ else
     <p>value of i: @i</p>
 }
 
-
+@{
+    int index = 0;
+}
 @foreach (var note in notes)
 {
-    <p @onclick="()=>deleteNote(note)" style="cursor: pointer;">@((MarkupString)note)</p>
+    <div id="@("ie"+@index)" @ref="NoteContainerRef" @onmouseenter="showPopUp" @onmouseleave="hidePopUp"
+        class="note-container">
+        @if (showPopup)
+        {
+            <span class="note-popup" @onclick="()=>deleteNote(note)">Delete Note</span>
+        }
+        <p>@((MarkupString)note)</p>
+    </div>
+    index++;
 }
 
+
 @code {
+    ElementReference NoteContainerRef;
+    private bool showPopup = false;
+
     private string newNoteInput = "";
     private List<string> notes = [];
 
+
+    private void showPopUp()
+    {
+
+    }
+
+    private void hidePopUp()
+    {
+
+    }
     protected override void OnInitialized()
     {
         notes = new List<string>{

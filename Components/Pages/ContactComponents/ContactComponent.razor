@@ -18,6 +18,7 @@
     }
     <br />
     <button @onclick="@(()=>{displayInfo = !displayInfo;})">Show info</button>
+    <button @onclick="@(()=>{DeleteCurrentContact.InvokeAsync(CurrentContact);})">Delete</button>
 </div>
 
 @code {
@@ -25,7 +26,11 @@
 
     [Parameter]
     public bool DisplayEmail { get; set; }
-    private bool displayInfo = false;
+
+    [Parameter]
+    public EventCallback<Contact> DeleteCurrentContact { get; set; }
+
+    public bool displayInfo = false;
 
     @* public string FirstName { get; set; } = "";
 [Parameter]

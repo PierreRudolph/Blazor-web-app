@@ -9,27 +9,16 @@ denn dann überall verfügbar. *@
 
 <h1 class="headline-contacts">Kontakte</h1>
 
-<input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
+<ContactList Contacts="@contacts"></ContactList>
 
-@foreach (var contact in contacts)
-{
-
-    <ContactComponent DisplayEmail="DisplayEmail" CurrentContact="contact">
-    </ContactComponent>
-
-    @* <Blazor_App.Components.Pages.ContactComponents.ContactComponent FirstName="@contact.FirstName"
-LastName="@contact.LastName" Email="@contact.Email">
-</Blazor_App.Components.Pages.ContactComponents.ContactComponent> alternative zu obigem code *@
-}
 
 @code {
-    private bool DisplayEmail = true;
     private List<Contact> contacts = [];
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
 
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(5000);
         contacts = new List<Contact>
 {
 new Contact
@@ -51,5 +40,8 @@ LastName="Kafka",
 Email="kafka@mail.de"
 },
 };
+
+        base.OnInitializedAsync();
     }
+
 }

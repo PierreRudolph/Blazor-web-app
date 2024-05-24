@@ -1,5 +1,5 @@
 ﻿@page "/"
-
+@rendermode InteractiveServer
 @using Blazor_App.Components.Pages.ContactComponents
 
 <PageTitle>Home</PageTitle>
@@ -8,9 +8,10 @@
 
 Welcome to your new app.
 
+<input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
 
 
-<ContactComponent CurrentContact="contact">
+<ContactComponent CurrentContact="@contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="DeleteContact">
 </ContactComponent>
 
 <br>
@@ -26,7 +27,18 @@ Welcome to your new app.
 {"placeholder","Kontakt Name"},
 {"type","text"}
 };
+
+    public bool DisplayEmail = false;
+
+
     private string GetWord() { return "world"; }
 
     public Contact contact = new Contact { FirstName = "Pierre", LastName = "Lettner", Email = "kasdlkfj" };
+
+    private void DeleteContact(Contact contact)
+    {
+        contact.FirstName = "";
+        contact.LastName = "";
+        contact.Email = "";
+    }
 }
