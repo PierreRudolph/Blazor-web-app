@@ -3,8 +3,11 @@ using Blazor_App.Components;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+ConfigureServices(builder.Services);//alternative um services hinzufügen.
+//builder.Services.AddRazorComponents()
+//    .AddInteractiveServerComponents();
+//own service added
+//builder.Services.AddSingleton<ContactService>();
 
 var app = builder.Build();
 
@@ -25,3 +28,10 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.Run();
+
+static void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+    services.AddSingleton<ContactService>();
+}

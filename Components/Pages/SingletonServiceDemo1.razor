@@ -1,0 +1,42 @@
+@page "/SingletonServiceDemo1"
+@inject ContactService ContactService
+@rendermode InteractiveServer
+<h1>ServiceDemo1</h1>
+
+<input placeholder="Vorname" @bind="firstName"><br>
+<input placeholder="Nachname" @bind="lastName"><br>
+<input placeholder="Email" @bind="email"><br><br>
+<button @onclick="AddContact">Kontakt hinzufügen</button><br><br>
+
+@if (ContactService.ContactList.Count == 0)
+{
+    <b>No Contacts to Display</b>
+}
+else
+{
+    @foreach (var contact in ContactService.ContactList)
+    {
+        <b>@contact.FirstName @contact.LastName</b>
+
+        <br>
+        <i>@contact.Email</i>
+
+        <br>
+        <br>
+    }
+}
+
+@code {
+    private string firstName, lastName, email;
+
+    public void AddContact()
+    {
+        var contact = new Contact
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email
+            };
+        ContactService.AddContact(contact);
+    }
+}
