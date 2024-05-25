@@ -1,16 +1,16 @@
-@page "/SingletonServiceDemo2"
-@inject ContactService ContactService
+@page "/ServiceDemo2"
+@inject IContactService ContactService
 @rendermode InteractiveServer
 
 <h1>ServiceDemo2</h1>
 
-@if (ContactService.ContactList.Count == 0)
+@if (ContactService.GetContacts().Count == 0)
 {
     <b>No Contacts to Display</b>
 }
 else
 {
-    @foreach (var contact in ContactService.ContactList)
+    @foreach (var contact in ContactService.GetContacts())
     {
         <b>@contact.FirstName @contact.LastName</b>
 
