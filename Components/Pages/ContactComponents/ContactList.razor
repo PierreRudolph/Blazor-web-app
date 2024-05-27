@@ -37,14 +37,12 @@ else
 
 
 
-    private async Task DeleteContact(Contact contact)
+    private async Task DeleteContact(Contact contact)//so schreibt man eine asynchrone methode in C#
     {
-        var result = await jsRuntime.InvokeAsync<bool>("confirm", "Do your realy want to Delte this Contact?");
+        var result = await jsRuntime.InvokeAsync<bool>("confirm", $"Do your realy want to Delete {contact.FirstName} {contact.LastName}, from the Contact list?");//$"some text{variable}"mit der syntax lässt sich eine variable in einen string einbetten
         Console.WriteLine(result);
         if (!result)//bedeutet if(result==false)
             return;
         Contacts.Remove(contact);
-
     }
-
 }

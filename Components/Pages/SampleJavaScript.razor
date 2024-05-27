@@ -12,7 +12,10 @@ eingebunden werden*@
 <button @onclick="ShowConfirm">Display Confirm</button>
 <br>
 <span>Result from Confirm is: @confirmResult</span>
-
+<br>
+<button onclick="callMethod()">Call JavaScript function</button>
+<br>
+<button @onclick="CallInvokeMethodJavaScript">Call Instance Method JavaScript</button>
 @code {
     private string confirmResult = "";
     private void ShowAlert()
@@ -25,5 +28,26 @@ eingebunden werden*@
     {
         var result = await jsRuntime.InvokeAsync<bool>("confirm", "Do you need to proceed?");
         confirmResult = result.ToString();
+    }
+
+    private async Task CallInvokeMethodJavaScript()
+    {
+        var sampleJsReference = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/sample.js");//hier wird die
+                                                                                                            //javascript
+                                                                                                            //datei heruntergeladen nur wenn die funktion aufgerufen wird.
+                                                                                                            //await jsRuntime.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
+        await sampleJsReference.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
+    }
+
+    [JSInvokable]
+    public async Task<string> GetValueFromInstance()//so kann man javascript code von eine class instance aus aufrufen
+    {
+        return "Hello World from Instance";
+    }
+
+    [JSInvokable]//heisst soviel wie "durch javaScript aufrufbar"
+    public static Task<string> GetValueFromMethod()
+    {
+        return Task.FromResult<string>("Hello World");
     }
 }
