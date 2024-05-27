@@ -1,31 +1,34 @@
 @inject IJSRuntime jsRuntime
 @rendermode InteractiveServer
+@using Blazor_App.Components.Layout
 
 <input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
 
-@if(DisplayContacts)
+@if (DisplayContacts)
 {
-@if (Contacts is null)
-{
-    @NullContacts
-}
-else if (Contacts.Count == 0)
-{
-    @EmptyContacts
-
-}
-else
-{
-    @foreach (var contact in Contacts)
+    @if (Contacts is null)
     {
-        <ContactComponent DeleteCurrentContact="DeleteContact" DisplayEmail="DisplayEmail" CurrentContact="contact">
-        </ContactComponent>
+        @NullContacts
+    }
+    else if (Contacts.Count == 0)
+    {
+        @EmptyContacts
+
+    }
+    else
+    {
+        @foreach (var contact in Contacts)
+        {
+            <ContactComponent DeleteCurrentContact="RequestPermission" DisplayEmail="DisplayEmail" CurrentContact="contact">
+            </ContactComponent>
+        }
     }
 }
-}
 
+<DeleteConfirmation @ref="deleteConfirmation" OnConfirmed="OnDeleteConfirmed"></DeleteConfirmation>
 
 @code {
+    private DeleteConfirmation deleteConfirmation;
     [Parameter]
     public RenderFragment NullContacts { get; set; }
 
@@ -37,17 +40,29 @@ else
 
 
     public bool DisplayEmail = false;
-private bool DisplayContacts=true;
+    private bool DisplayContacts = true;
 
 
-    private async Task DeleteContact(Contact contact)//so schreibt man eine asynchrone methode in C#
+    private async Task RequestPermission(Contact contact)//so schreibt man eine asynchrone methode in C#
     {
-        var result = await jsRuntime.InvokeAsync<bool>("confirm", $"Do your realy want to Delete {contact.FirstName} {contact.LastName}, from the Contact list?");//$"some text{variable}"mit der syntax lässt sich eine variable in einen string einbetten
-        if (!result)//bedeutet if(result==false)
-            return;
-        Contacts.Remove(contact);
+        @* var result = await jsRuntime.InvokeAsync<bool>("confirm", $"Do your realy want to Delete {contact.FirstName}
+{contact.LastName}, from the Contact list?");//$"some text{variable}"mit der syntax lässt sich eine variable in einen
+string einbetten
+if (!result)//bedeutet if(result==false)
+return;
+Contacts.Remove(contact); *@
+
+        deleteConfirmation.ContactName = $"{contact.FirstName} {contact.LastName}";
+        deleteConfirmation.ContactToDelete = contact;
+        deleteConfirmation.Show();
     }
 
-    public void ShowContacts()=>DisplayContacts=true;
-    public void HideContacts()=>DisplayContacts=false;
+    private async Task OnDeleteConfirmed(Contact contact)
+    {
+        Contacts.Remove(contact);
+        deleteConfirmation.Hide();
+    }
+
+    public void ShowContacts() => DisplayContacts = true;
+    public void HideContacts() => DisplayContacts = false;
 }

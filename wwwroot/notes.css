@@ -10,9 +10,12 @@
     width: fit-content;
 }
 
+.note-container:hover .note-popup{
+display: block !important;
+}
 
 .note-popup{
-    
+    display: none;
     position: absolute;
     top: -5px;
     right: -50px;

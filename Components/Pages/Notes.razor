@@ -44,16 +44,15 @@ else
 @* @{
 int index = 0;//i in eine foreach schleife reinbekommen
 } *@
-@foreach (var note in notes.Select((value, index) => new { value, index }))
+@foreach (var note in notes.Select((value, index) => new { value, index }))//mit .Select(value,index) den index von
+                                                                          //einem element in einer foreach schleife bekommen
 {
 
-    <div id="@($"note{note.index}")" @onmouseenter="()=>showPopUp(note.index)" @onmouseleave="()=>hidePopUp(note.index)"
-        class="note-container">
-        @if (showPopup)
-        {
-            <span class="note-popup" @onclick="()=>deleteNote(note.value)">Delete
-                Note</span>
-        }
+    <div id="@($"note{note.index}")" class="note-container">
+
+        <span class="note-popup" @onclick="()=>deleteNote(note.value)">Delete
+            Note</span>
+
         <p>@((MarkupString)note.value)</p>@*mit @((MarkupString)variable) erkennt er html code im text und zeigt ihn korrekt
     an*@
     </div>
@@ -68,16 +67,6 @@ int index = 0;//i in eine foreach schleife reinbekommen
     private string newNoteInput = "";
     private List<string> notes = [];
 
-
-    private void showPopUp(int index)
-    {
-
-    }
-
-    private void hidePopUp(int index)
-    {
-
-    }
     protected override void OnInitialized()
     {
         notes = new List<string>{
