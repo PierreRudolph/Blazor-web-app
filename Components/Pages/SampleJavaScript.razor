@@ -1,0 +1,29 @@
+@page "/Sample-JavaScript"
+@inject IJSRuntime jsRuntime
+@rendermode InteractiveServer
+@*IJSRuntime ist eine default dependencie in Blazor
+und muss deswegen nicht erst in Program.cs als service
+eingebunden werden*@
+<h1>Sample JavaScript</h1>
+
+
+
+<button @onclick="ShowAlert">Alert</button>
+<button @onclick="ShowConfirm">Display Confirm</button>
+<br>
+<span>Result from Confirm is: @confirmResult</span>
+
+@code {
+    private string confirmResult = "";
+    private void ShowAlert()
+    {
+        //alert("some message")
+        jsRuntime.InvokeVoidAsync("alert", "Hello world from a C# Method");
+    }
+
+    private async Task ShowConfirm()
+    {
+        var result = await jsRuntime.InvokeAsync<bool>("confirm", "Do you need to proceed?");
+        confirmResult = result.ToString();
+    }
+}

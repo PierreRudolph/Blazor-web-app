@@ -1,3 +1,6 @@
+@inject IJSRuntime jsRuntime
+@rendermode InteractiveServer
+
 <input type="checkbox" @bind="DisplayEmail"> <label>Display Email</label>
 
 @if (Contacts is null)
@@ -19,7 +22,6 @@ else
 }
 
 
-
 @code {
     [Parameter]
     public RenderFragment NullContacts { get; set; }
@@ -34,9 +36,15 @@ else
     public bool DisplayEmail = false;
 
 
-    private void DeleteContact(Contact contact)
+
+    private async Task DeleteContact(Contact contact)
     {
+        var result = await jsRuntime.InvokeAsync<bool>("confirm", "Do your realy want to Delte this Contact?");
+        Console.WriteLine(result);
+        if (!result)//bedeutet if(result==false)
+            return;
         Contacts.Remove(contact);
+
     }
 
 }

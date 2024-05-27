@@ -1,11 +1,12 @@
+using Blazor_App.Components.Pages.ContactComponents;
 using Blazor_App.Models;
 using Microsoft.AspNetCore.Components;
-namespace Blazor_App.Components.Pages.ContactsFolder
+namespace Blazor_App.Components.Pages.ContactsPage
 {
     public partial class Contacts
     {
         private List<Contact> contacts = [];
-
+        private ContactList contactList;
         [Inject]
         private IContactService ContactService { get; set; } = new ContactService();
 
@@ -13,8 +14,8 @@ namespace Blazor_App.Components.Pages.ContactsFolder
         {
             await Task.Delay(2000);
             contacts = ContactService.GetContacts();
-            //             contacts = new List<Contact>
-            // {
+            //             contacts =
+            // [
             // new Contact
             // {
             // FirstName="Peter",
@@ -33,9 +34,11 @@ namespace Blazor_App.Components.Pages.ContactsFolder
             // LastName="Kafka",
             // Email="kafka@mail.de"
             // }
-            // };
+            // ];
 
             base.OnInitializedAsync();
         }
+
+
     }
 }

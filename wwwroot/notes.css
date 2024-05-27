@@ -12,11 +12,19 @@
 
 
 .note-popup{
-    display: none;
+    
     position: absolute;
     top: -5px;
     right: -50px;
   border: 1px solid;
   border-radius: 10px;
   padding: 1px 4px;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
 }

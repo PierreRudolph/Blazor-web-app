@@ -32,43 +32,49 @@ else
 <input @bind="@newNoteInput">
 <button @onclick="addNewNote">Neue Notiz hinzufügen</button>
 <button @onclick="deleteAllNotes">Alle Notizen löschen</button>
-
+<br>
+<span>for Schleife mit i variable im HTML:</span>
 @for (int i = 0; i < 10; i++)
 {
     <p>value of i: @i</p>
 }
-
-@{
-    int index = 0;
-}
-@foreach (var note in notes)
+<br>
+<span>Notizen mit einer ForEach schleife aus einer List(Liste) generiert:</span>
+<br>
+@* @{
+int index = 0;//i in eine foreach schleife reinbekommen
+} *@
+@foreach (var note in notes.Select((value, index) => new { value, index }))
 {
-    <div id="@("ie"+@index)" @ref="NoteContainerRef" @onmouseenter="showPopUp" @onmouseleave="hidePopUp"
+
+    <div id="@($"note{note.index}")" @onmouseenter="()=>showPopUp(note.index)" @onmouseleave="()=>hidePopUp(note.index)"
         class="note-container">
         @if (showPopup)
         {
-            <span class="note-popup" @onclick="()=>deleteNote(note)">Delete Note</span>
+            <span class="note-popup" @onclick="()=>deleteNote(note.value)">Delete
+                Note</span>
         }
-        <p>@((MarkupString)note)</p>
+        <p>@((MarkupString)note.value)</p>@*mit @((MarkupString)variable) erkennt er html code im text und zeigt ihn korrekt
+    an*@
     </div>
-    index++;
+    @* index++; *@
 }
 
 
+
 @code {
-    ElementReference NoteContainerRef;
     private bool showPopup = false;
 
     private string newNoteInput = "";
     private List<string> notes = [];
 
 
-    private void showPopUp()
+    private void showPopUp(int index)
     {
 
     }
 
-    private void hidePopUp()
+    private void hidePopUp(int index)
     {
 
     }
@@ -82,6 +88,7 @@ else
 "fünfte notiz",
 "sechste notiz",
 "siebte notiz"};
+
     }
     private string exampleNote = "Beispiel Notiz";
     private void changeText()
