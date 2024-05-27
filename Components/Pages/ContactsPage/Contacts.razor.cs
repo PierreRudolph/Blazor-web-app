@@ -6,39 +6,51 @@ namespace Blazor_App.Components.Pages.ContactsPage
     public partial class Contacts
     {
         private List<Contact> contacts = [];
-        private ContactList contactList;
+        private bool IsContactDisplayed = true;
+        private ContactList contactList;//das ist eine refernz auf die datei/klasse ContactList
         [Inject]
         private IContactService ContactService { get; set; } = new ContactService();
 
         protected async override Task OnInitializedAsync()
         {
             await Task.Delay(2000);
-            contacts = ContactService.GetContacts();
-            //             contacts =
-            // [
-            // new Contact
-            // {
-            // FirstName="Peter",
-            // LastName="Wohlleben",
-            // Email="wohlleben@mail.de"
-            // },
-            // new Contact
-            // {
-            // FirstName="Julia",
-            // LastName="Stockerson",
-            // Email="stockerson@mail.de"
-            // },
-            // new Contact
-            // {
-            // FirstName="Markus",
-            // LastName="Kafka",
-            // Email="kafka@mail.de"
-            // }
-            // ];
+            //contacts = ContactService.GetContacts();
+            contacts =
+[
+new Contact
+            {
+            FirstName="Peter",
+            LastName="Wohlleben",
+            Email="wohlleben@mail.de"
+            },
+            new Contact
+            {
+            FirstName="Julia",
+            LastName="Stockerson",
+            Email="stockerson@mail.de"
+            },
+            new Contact
+            {
+            FirstName="Markus",
+            LastName="Kafka",
+            Email="kafka@mail.de"
+            }
+];
 
             base.OnInitializedAsync();
         }
 
-
+        private void HideContacts()
+        {
+            IsContactDisplayed = !IsContactDisplayed;
+            if (!IsContactDisplayed)
+            {
+                contactList.HideContacts();
+            }
+            else
+            {
+                contactList.ShowContacts();
+            }
+        }
     }
 }

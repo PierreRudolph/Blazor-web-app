@@ -9,8 +9,10 @@ denn dann überall verfügbar. *@
 
 <h1 class="headline-contacts">Kontakte</h1>
 <h2>test</h2>
-
-<ContactList Contacts="@contacts">
+<br>
+<button @onclick="HideContacts">Kontakte Anzeigen/Vergerben</button>
+<br>
+<ContactList @ref="contactList" Contacts="@contacts">
     <NullContacts>
         <br>
         <span>Kontakte werden geladen...(from Contacts Razor)</span>
@@ -22,3 +24,4 @@ denn dann überall verfügbar. *@
         <span>keine Kontakte zum Anzeigen...(from Contacts Razor)</span>
     </EmptyContacts>
 </ContactList>
+<br>
