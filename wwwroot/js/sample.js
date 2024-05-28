@@ -1,9 +1,3 @@
-function callMethod() {
-    DotNet.invokeMethodAsync("Blazor-App", "GetValueFromMethod").then(result => {
-        alert("Message from Method:" + result)
-    });//invokeMethodAsync ist die Methode um eine C# method aufzurufen 
-}
-
 export function callInstanceMethod(instanceObject) {
     instanceObject.invokeMethodAsync("GetValueFromInstance").then(result => {
         alert("Message from Method: " + result)

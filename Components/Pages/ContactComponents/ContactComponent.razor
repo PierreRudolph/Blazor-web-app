@@ -18,7 +18,9 @@
     }
     <br />
     <button @onclick="@(()=>{displayInfo = !displayInfo;})">Show info</button>
-    <button @onclick="@(()=>{DeleteCurrentContact.InvokeAsync(CurrentContact);})">Delete</button>
+    <button>Delete</button>
+    <RadzenButton @rendermode="@RenderMode.InteractiveServer" Text="Delete"
+        @onclick="@(()=>{DeleteCurrentContact.InvokeAsync(CurrentContact);})"></RadzenButton>
 </div>
 
 @code {

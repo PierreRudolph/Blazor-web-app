@@ -28,22 +28,22 @@
 <DeleteConfirmation @ref="deleteConfirmation" OnConfirmed="OnDeleteConfirmed"></DeleteConfirmation>
 
 @code {
-    private DeleteConfirmation deleteConfirmation;
+    private DeleteConfirmation? deleteConfirmation;
     [Parameter]
-    public RenderFragment NullContacts { get; set; }
+    public RenderFragment? NullContacts { get; set; }
 
     [Parameter]
-    public RenderFragment EmptyContacts { get; set; }
+    public RenderFragment? EmptyContacts { get; set; }
 
     [Parameter]
-    public List<Contact> Contacts { get; set; }
+    public List<Contact>? Contacts { get; set; }
 
 
     public bool DisplayEmail = false;
     private bool DisplayContacts = true;
 
 
-    private async Task RequestPermission(Contact contact)//so schreibt man eine asynchrone methode in C#
+    private Task RequestPermission(Contact contact)//so schreibt man eine asynchrone methode in C#
     {
         @* var result = await jsRuntime.InvokeAsync<bool>("confirm", $"Do your realy want to Delete {contact.FirstName}
 {contact.LastName}, from the Contact list?");//$"some text{variable}"mit der syntax lässt sich eine variable in einen
@@ -51,16 +51,28 @@ string einbetten
 if (!result)//bedeutet if(result==false)
 return;
 Contacts.Remove(contact); *@
+        if (deleteConfirmation != null)
+        {
+            deleteConfirmation.ContactName = $"{contact.FirstName} {contact.LastName}";
+            deleteConfirmation.ContactToDelete = contact;
+            deleteConfirmation.Show();
+        }
 
-        deleteConfirmation.ContactName = $"{contact.FirstName} {contact.LastName}";
-        deleteConfirmation.ContactToDelete = contact;
-        deleteConfirmation.Show();
+
+        return Task.CompletedTask;
     }
 
-    private async Task OnDeleteConfirmed(Contact contact)
+    private Task OnDeleteConfirmed(Contact contact)
     {
-        Contacts.Remove(contact);
-        deleteConfirmation.Hide();
+        if (Contacts != null)
+        {
+            Contacts.Remove(contact);
+        }
+        if (deleteConfirmation != null)
+        {
+            deleteConfirmation.Hide();
+        }
+        return Task.CompletedTask;
     }
 
     public void ShowContacts() => DisplayContacts = true;
