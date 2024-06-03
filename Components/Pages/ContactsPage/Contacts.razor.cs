@@ -11,9 +11,11 @@ namespace Blazor_App.Components.Pages.ContactsPage
         [Inject]
         private IContactService ContactService { get; set; } = new ContactService();
 
+        [Inject]
+        NavigationManager navigationManager { get; set; }
         protected async override Task OnInitializedAsync()
         {
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             //contacts = ContactService.GetContacts();
             contacts =
 [
@@ -51,6 +53,11 @@ new Contact
             {
                 contactList.ShowContacts();
             }
+        }
+
+        private void NavigateToTest()
+        {
+            navigationManager.NavigateTo("./testPage");
         }
     }
 }

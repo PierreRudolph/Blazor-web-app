@@ -20,6 +20,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");//is used to get 404 status code, and redirect to custom 404 NotFound site
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
