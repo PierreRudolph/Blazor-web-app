@@ -1,5 +1,6 @@
 using Blazor_App.Components;
-
+using Microsoft.AspNetCore.Mvc;
+using Radzen;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -28,11 +29,16 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.Run();
-
 static void ConfigureServices(IServiceCollection services)
 {
+    services.AddScoped<DialogService>();
+    services.AddScoped<RadzenComponent>();
+    services.AddScoped<NotificationService>();
+    services.AddScoped<TooltipService>();
+    services.AddScoped<ContextMenuService>();
+
     services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+        .AddInteractiveServerComponents();
     //services.AddSingleton<ContactService>();//adds a Singleton service
     //services.AddTransient<ContactService>();//adds a Transient service
     services.AddSingleton<IContactService, ContactServiceTesting>();//service über ein interface einbinden ist die empfohlene variante

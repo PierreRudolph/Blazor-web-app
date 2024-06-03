@@ -18,10 +18,13 @@
     }
     <br />
     <button @onclick="@(()=>{displayInfo = !displayInfo;})">Show info</button>
-    <button>Delete</button>
-    <RadzenButton @rendermode="@RenderMode.InteractiveServer" Text="Delete"
-        @onclick="@(()=>{DeleteCurrentContact.InvokeAsync(CurrentContact);})"></RadzenButton>
+
+    <RadzenButton Text="Delete" Click="@(()=>{DeleteCurrentContact.InvokeAsync(CurrentContact);})"></RadzenButton>
 </div>
+
+
+
+
 
 @code {
     [Parameter] public Contact CurrentContact { get; set; } = new Contact();
