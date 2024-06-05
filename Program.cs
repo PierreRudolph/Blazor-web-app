@@ -44,5 +44,6 @@ static void ConfigureServices(IServiceCollection services)
     //services.AddSingleton<ContactService>();//adds a Singleton service
     //services.AddTransient<ContactService>();//adds a Transient service
     services.AddSingleton<IContactService, ContactServiceTesting>();//service über ein interface einbinden ist die empfohlene variante
+    services.AddSingleton<MemberService>();
     //adds Singleton IContactService und ContactService oder anstatt ContactService, ContactServiceTesting eingeben wenn servide geändert werden soll
 }

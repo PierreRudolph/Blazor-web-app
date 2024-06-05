@@ -1,0 +1,21 @@
+﻿@using Blazor_App.Models
+
+<td>
+    @Member.MemberName
+</td>
+
+<td>@Member.Email</td>
+
+<td>@Member.Age</td>
+
+<td>
+    @Member.JoiningDate.ToString("dd-MM-yyyy")
+</td>
+
+
+
+@code {
+
+    [Parameter]
+    public MemberViewModel Member { get; set; }
+}

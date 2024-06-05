@@ -9,7 +9,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Pages\MemberView.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Radzen.Blazor" Version="4.32.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\MemberList.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Pages\AddMember.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\MemberDetail.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\MemberList.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\MemberView.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Pages\MemberView.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\MemberDetail.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\MemberView.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\AddMember.razor" />
   </ItemGroup>
 
 </Project>

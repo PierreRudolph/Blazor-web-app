@@ -1,0 +1,29 @@
+﻿@using Blazor_App.Models
+@using Blazor_App.Components.Pages
+@inject NavigationManager navManager
+@inject MemberService memberService
+@page "/addMember"
+
+<h3>Nutzer hinzufügen</h3>
+
+<EditForm Model="@member" OnSubmit="SaveMember">
+    
+    <InputText class="form-control" placeholder="Name" @bind-Value="@member.MemberName"></InputText><br />
+    <InputText class="form-control" placeholder="Email" @bind-Value="@member.Email"></InputText><br />
+    <InputNumber class="form-control" placeholder="Alter" @bind-Value="@member.Age"></InputNumber><br />
+    <InputDate class="form-control" placeholder="Mitglied seit" @bind-Value="@member.JoiningDate"></InputDate>
+
+    <RadzenButton type="submit">Nutzer hinzufügen</RadzenButton>
+</EditForm>
+
+@code {
+    private MemberViewModel member =new MemberViewModel();
+
+    private void SaveMember()
+    {
+        memberService.AddContact(member);
+
+        navManager.NavigateTo("/member");
+        Console.WriteLine("submitted");
+    }
+}
