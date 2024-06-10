@@ -1,8 +1,9 @@
-﻿@inject NavigationManager navManager 
+﻿@inject NavigationManager navManager
 @*NavigationManager is a service to navigate thru urls in C#*@
- @page "/testPage/{contactName?}/{Age:int?}"
+@page "/testPage/{contactName?}/{Age:int?}"
 @*if numbers are wanted in the url we must call it :int, otherwise we get a error*@
-@*like this we pass a parameter thru the url, with the question mark, the site loads correctly even we pass no parameter *@
+@*like this we pass a parameter thru the url, with the question mark, the site loads correctly even we pass no parameter
+*@
 
 
 <PageTitle>TestPage</PageTitle>
@@ -20,7 +21,7 @@
 
 @code {
     [Parameter]
-    public string contactName { get; set; }
+    public string contactName { get; set; } = "";
 
     [Parameter]
     public int Age { get; set; } = 0;

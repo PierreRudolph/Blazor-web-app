@@ -1,7 +1,7 @@
 ﻿@page "/member"
 @using Blazor_App.Components
 
- @inject MemberService memberService 
+@inject MemberService memberService
 <PageTitle>Nutzer</PageTitle>
 
 <h3>Member List</h3>
@@ -15,69 +15,68 @@
 else
 {
     <table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Age</th>
-        <th>Joining Date</th>
-    </tr>
-    </thead>
-    @foreach(var member in memberList)
-    {
-        <tbody>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Joining Date</th>
+            </tr>
+        </thead>
+        @foreach (var member in memberList)
+        {
+            <tbody>
 
-        <MemberDetail Member="member"></MemberDetail>
-        
-        </tbody>
-    }
+                <MemberDetail Member="member"></MemberDetail>
+            </tbody>
+        }
 
 
-</table>
+    </table>
 }
 
 
 
 @code {
-    public List<MemberViewModel> memberList =[];
+    public List<MemberViewModel> memberList = [];
 
     protected override void OnInitialized()
     {
         memberList = memberService.GetMembers();
         // memberList = new List<MemberViewModel>
         // {
-        //     new MemberViewModel
-        //     {
-        //         MemberId="someId1233",
-        //         MemberName="Johann",
-        //         Email="johann@mail.de",
-        //         Age=46,
-        //         JoiningDate=new DateTime(2024,11,23)
-        //     },
-        //     new MemberViewModel
-        //     {
-        //         MemberId="someId1234",
-        //         MemberName="Sybille",
-        //         Email="bille@mail.de",
-        //         Age=46,
-        //         JoiningDate=new DateTime(2020,5,11)
-        //     },
-        //     new MemberViewModel
-        //     {
-        //         MemberId="someId1235",
-        //         MemberName="Sebastian",
-        //         Email="basti@mail.de",
-        //         Age=46,
-        //         JoiningDate=new DateTime(2022,1,4)
-        //     },
-        //     new MemberViewModel
-        //     {
-        //         MemberId="someId1236",
-        //         MemberName="Jörg",
-        //         Email="jörg@mail.de",
-        //         Age=46,
-        //         JoiningDate=new DateTime(2021,12,9)
-        //     },
+        // new MemberViewModel
+        // {
+        // MemberId="someId1233",
+        // MemberName="Johann",
+        // Email="johann@mail.de",
+        // Age=46,
+        // JoiningDate=new DateTime(2024,11,23)
+        // },
+        // new MemberViewModel
+        // {
+        // MemberId="someId1234",
+        // MemberName="Sybille",
+        // Email="bille@mail.de",
+        // Age=46,
+        // JoiningDate=new DateTime(2020,5,11)
+        // },
+        // new MemberViewModel
+        // {
+        // MemberId="someId1235",
+        // MemberName="Sebastian",
+        // Email="basti@mail.de",
+        // Age=46,
+        // JoiningDate=new DateTime(2022,1,4)
+        // },
+        // new MemberViewModel
+        // {
+        // MemberId="someId1236",
+        // MemberName="Jörg",
+        // Email="jörg@mail.de",
+        // Age=46,
+        // JoiningDate=new DateTime(2021,12,9)
+        // },
         // };
         base.OnInitialized();
     }

@@ -37,6 +37,7 @@ eingebunden werden*@
     [JSInvokable]
     public async Task<string> GetValueFromInstance()//so kann man javascript code von eine class instance aus aufrufen
     {
+        await Task.Delay(100);
         return "Hello World from Instance";
     }
 
